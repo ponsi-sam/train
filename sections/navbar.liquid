@@ -1,0 +1,78 @@
+{% schema %}
+    {
+      "name": "Navbar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "navbar_brand",
+          "label": "Brand Name",
+          "default": "Your Brand"
+        },
+        {
+          "type": "link_list",
+          "id": "navbar_links",
+          "label": "Navbar Links",
+          "info": "Add links to your navbar"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_sticky_navbar",
+          "label": "Enable Sticky Navbar",
+          "default": false
+        }
+      ]
+    }
+    {% endschema %}
+    
+    {% stylesheet %}
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+    .navbar-nav {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      
+    }
+    .nav-item {
+      display: block;
+    }
+    .nav-link {
+      text-decoration: none;
+      color: #333;
+    }
+    .sticky {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: white;
+    }
+    @media (max-width: 768px) {
+      .navbar-nav {
+        flex-direction: column;
+      }
+    }
+    {% endstylesheet %}
+    
+    {% javascript %}
+    // Optional: JavaScript for interactive components like dropdowns
+    {% endjavascript %}
+    
+    <header class="{% if section.settings.enable_sticky_navbar %}sticky{% endif %}">
+      <div class="container">
+        <nav class="navbar">
+          <a href="/" class="navbar-brand">{{ section.settings.navbar_brand }}</a>
+          <ul class="navbar-nav">
+            {% for link in linklists[section.settings.navbar_links].links %}
+              <li class="nav-item">
+                <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    

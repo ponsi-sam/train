@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Navbar Settings",
+        "settings": [
+          {
+            "type": "text",
+            "id": "navbar_custom_link_title",
+            "label": "Custom Nav Item Title",
+            "default": "Custom Link"
+          },
+          {
+            "type": "url",
+            "id": "navbar_custom_link_url",
+            "label": "Custom Nav Item URL",
+            "default": "/pages/custom-link"
+          }
+        ]
+      }
+      
+]
+
